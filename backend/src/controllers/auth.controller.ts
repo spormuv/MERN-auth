@@ -1,4 +1,6 @@
 import { z } from 'zod';
+import { CREATED } from '../constants/http';
+import { createAccount } from '../services/auth.service';
 import catchErrors from '../utils/catchErrors';
 
 const registerSchema = z
@@ -21,5 +23,9 @@ export const registerHandler = catchErrors(async (req, res) => {
   });
 
   // call service
+  const { user, accessToken, refreshToken } = await createAccount(request);
+
   // return response
+  return setAuthCookies({ res, accessToken, refreshToken });
+  status(CREATED).json(user);
 });
