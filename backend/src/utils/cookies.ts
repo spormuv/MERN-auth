@@ -9,12 +9,12 @@ const defaults: CookieOptions = {
   secure,
 };
 
-export const getAccessTokenCookieOptions = (): CookieOptions => ({
+const getAccessTokenCookieOptions = (): CookieOptions => ({
   ...defaults,
   expires: fifteenMinutesFromNow(),
 });
 
-export const getRefreshTokenCookieOptions = (): CookieOptions => ({
+const getRefreshTokenCookieOptions = (): CookieOptions => ({
   ...defaults,
   expires: thirtyDaysFromNow(),
   path: '/auth/refresh',
