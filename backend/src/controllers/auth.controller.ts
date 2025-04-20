@@ -1,7 +1,9 @@
 import { CREATED, OK } from '../constants/http';
+import SessionModel from '../models/session.model';
 import { createAccount, loginUser } from '../services/auth.service';
 import catchErrors from '../utils/catchErrors';
-import { setAuthCookies } from '../utils/cookies';
+import { clearAuthCookies, setAuthCookies } from '../utils/cookies';
+import { verifyToken } from '../utils/jwt';
 import { loginSchema, registerSchema } from './auth.schemas';
 
 export const registerHandler = catchErrors(async (req, res) => {
@@ -31,4 +33,17 @@ export const loginHandler = catchErrors(async (req, res) => {
   return setAuthCookies({ res, accessToken, refreshToken }).status(OK).json({
     message: 'Login successful',
   });
+});
+
+export const logoutHandler = catchErrors(async (req, res) => {
+  const accessToken = req.cookies.accessToken;
+  const { payload } = verifyToken(accessToken);
+
+  if (payload) {
+    await SessionModel.findByIdAndDelete(payload.sessionId);
+  }
+
+  return clearAuthCookies(res)
+    .status(OK)
+    .json({ message: 'Logout successful' });
 });
