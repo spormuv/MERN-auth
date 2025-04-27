@@ -28,7 +28,9 @@ const ResetPassword = () => {
               <AlertIcon />
               Invalid Link
             </Alert>
+
             <Text color='gray.400'>The link is either invalid or expired.</Text>
+
             <ChakraLink as={Link} to='/password/forgot' replace>
               Request a new password reset link
             </ChakraLink>

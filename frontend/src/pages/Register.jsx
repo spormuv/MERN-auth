@@ -41,6 +41,7 @@ const Register = () => {
         <Heading fontSize='4xl' mb={6}>
           Create an account
         </Heading>
+
         <Box rounded='lg' bg='gray.700' boxShadow='lg' p={8}>
           {isError && (
             <Box mb={3} color='red.400'>

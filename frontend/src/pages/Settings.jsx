@@ -4,6 +4,7 @@ import useSessions from '../hookes/useSessions';
 
 const Settings = () => {
   const { sessions, isPending, isSuccess, isError } = useSessions();
+
   return (
     <Container mt={16}>
       <Heading mb={6}>My Sessions</Heading>

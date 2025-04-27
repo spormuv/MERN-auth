@@ -37,6 +37,7 @@ const ForgotPassword = () => {
         <Heading fontSize='4xl' mb={8}>
           Reset your password
         </Heading>
+
         <Box rounded='lg' bg='gray.700' boxShadow='lg' p={8}>
           {isError && (
             <Box mb={3} color='red.400'>
@@ -60,6 +61,7 @@ const ForgotPassword = () => {
                     autoFocus
                   />
                 </FormControl>
+
                 <Button
                   my={2}
                   isLoading={isPending}
